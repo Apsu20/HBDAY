@@ -272,15 +272,15 @@ h1, h2, .font-cursive {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 75px);
-    grid-auto-rows: 150px;
+    grid-template-columns: repeat(auto-fit, 25px);
+    grid-auto-rows: 50px;
     justify-content: center;
     gap: 1rem;
 }
 
 .gallery_item {
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    height: 150px;
+    height: 50px;
     grid-column: span 2;
     transition: filter 0.3s ease;
 }
