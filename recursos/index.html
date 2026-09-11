@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Contenedor donde se renderizará el template -->
+    <div id="app"></div>
+
+    <!-- Contenido específico de esta página -->
+    <template id="index-content">
+        <a href="favs.html" class="btn-outline">galeria</a>
+        <a href="saludo.html" class="btn-outline btn-emoji" aria-label="Saludo">🎁</a>
+    </template>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            try {
+                // 1. Obtener la plantilla base desde la raíz
+                const response = await fetch("../template.html");
+                const htmlText = await response.text();
+                
+                // 2. Parsear la plantilla e instanciar el <template>
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, "text/html");
+                const baseTemplate = doc.getElementById("base-layout");
+                const layoutClone = baseTemplate.content.cloneNode(true);
+
+                // 3. Personalizar título y contenido del layout
+                layoutClone.getElementById("page-title").textContent = "Inicio";
+                
+                const indexContent = document.getElementById("index-content").content.cloneNode(true);
+                layoutClone.getElementById("page-body").appendChild(indexContent);
+
+                // 4. Renderizar en el DOM
+                document.getElementById("app").appendChild(layoutClone);
+            } catch (error) {
+                console.error("Error cargando la plantilla base:", error);
+            }
+        });
+    </script>
+</body>
+</html>

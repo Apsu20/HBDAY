@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GALERIA FAVORITOS</title>
+    <link rel="stylesheet" href="./styles.css">
+     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
+</head>
+<body>
+
+    <div id="app">
+        
+    </div>
+
+    <!-- Contenido inyectado dentro del template -->
+    <template id="galeria-content">
+   <div ><a href="index.html" class="btn-outline" aria-label="Inicio ">Volver a inicio</a></div>      
+        <main class="gallery" id="gallery">
+  
+        </main>
+       <div class="row">
+
+        
+       </div> 
+         
+        
+       
+        
+
+        <script>
+            
+    // 1. Lista con las rutas relativas de tus imágenes
+    const imagenes = [
+        "../img/monet-1.jpeg",
+        "../img/monet-2.jpeg","../img/postre.jpeg","../img/chilearron-2.jpeg",
+        "../img/monet-3.jpeg",
+     
+        "../img/tlou-1.jpg",
+        "../img/tlou-2.jpg",   "../img/monet-4.jpeg",
+        "../img/tlou-3.jpg",
+        "../img/tlou-4.jpg",
+        "../img/chilearron-1.jpeg",
+        
+        "../img/ramo1.jpeg",
+         
+         
+    ];
+
+    const galeria = document.getElementById("gallery");
+
+    // 2. Iteración para inyectar cada elemento en la galería
+    imagenes.forEach((ruta, index) => {
+        galeria.innerHTML += `
+            <div class="gallery_item">
+                <img src="${ruta}" alt="Obra ${index + 1}">
+            </div>
+            
+        `;
+    });
+    
+</script>
+    
+
+    </template>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            try {
+                const response = await fetch("../template.html");
+                if (!response.ok) throw new Error("No se pudo cargar la plantilla base");
+                
+                const htmlText = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, "text/html");
+                const baseTemplate = doc.getElementById("base-layout");
+                const layoutClone = baseTemplate.content.cloneNode(true);
+
+                // Personalizar el título
+                layoutClone.getElementById("page-title").textContent = "tus favoritos 🎁";
+                
+                // Inyectar el ion-card en el contenedor principal
+                const galeriaContent = document.getElementById("galeria-content").content.cloneNode(true);
+                layoutClone.getElementById("page-body").appendChild(galeriaContent);
+
+                document.getElementById("app").appendChild(layoutClone);
+            } catch (error) {
+                console.error("Error cargando la plantilla:", error);
+            }
+        });
+    </script>
+
+    
+</body>
+</html>
