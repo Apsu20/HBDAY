@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
+     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎈</text></svg>">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,8 +14,14 @@
 
     <!-- Contenido específico de esta página -->
     <template id="index-content">
-        <a href="favs.html" class="btn-outline">galeria</a>
-        <a href="saludo.html" class="btn-outline btn-emoji" aria-label="Saludo">🎁</a>
+ 
+            <div class="row">
+            <div class="row">
+                <a href="favs.html" class="btn-outline">🖼 GALERÍA</a>
+                <a href="saludo.html" class="btn-outline btn-emoji" aria-label="Saludo">🎁</a></div>
+
+            </div>
+
     </template>
 
     <script>
@@ -32,7 +38,7 @@
                 const layoutClone = baseTemplate.content.cloneNode(true);
 
                 // 3. Personalizar título y contenido del layout
-                layoutClone.getElementById("page-title").textContent = "Inicio";
+                layoutClone.getElementById("page-title").textContent = "Inicio 🥳";
                 
                 const indexContent = document.getElementById("index-content").content.cloneNode(true);
                 layoutClone.getElementById("page-body").appendChild(indexContent);

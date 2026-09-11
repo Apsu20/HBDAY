@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. IMPORTACIÓN DE FUENTES Y VARIABLES GLOBALES
+   1. VARIABLES GLOBALES Y RESET
    ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Poppins:wght@300;400;600&display=swap');
 
@@ -30,19 +30,87 @@
     padding: 0;
 }
 
-/* Estilo del Fondo de la Página */
+/* ==========================================================================
+   2. ESTRUCTURA BASE Y STICKY FOOTER
+   ========================================================================== */
+html {
+    height: 100%;
+}
+
 body {
     font-family: var(--font-body);
     background: var(--bg-gradient);
     background-attachment: fixed;
     color: var(--text-primary);
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#app {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+main, 
+.main-content {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center;
+}
+.actions-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;             /* Separación entre botones */
+    margin-top: 2rem;
+    width: 100%;
+    border: none;            /* Elimina el recuadro negro exterior si estaba definido */
+}
+mi-header, 
+mi-footer {
+    display: block;
+    width: 100%;
+}
+
+footer, 
+mi-footer {
+    flex-shrink: 0;
+}
+
+/* Navbar & Footer */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 10%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+.logo {
+    font-family: var(--font-cursive);
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
 /* ==========================================================================
-   2. TIPOGRAFÍA Y ESTRUCTURA GENERAL
+   3. TIPOGRAFÍA
    ========================================================================== */
 h1, h2, .font-cursive {
     font-family: var(--font-cursive);
@@ -64,41 +132,8 @@ h1, h2, .font-cursive {
     margin-bottom: 2rem;
 }
 
-/* Layout Principal */
-.main-content {
-    flex: 1;
-    max-width: 1200px;
-    width: 90%;
-    margin: 0 auto;
-    padding: 2rem 0;
-}
-
-/* Navbar & Footer */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 10%;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(8px);
-}
-
-.logo {
-    font-family: var(--font-cursive);
-    font-size: 2.2rem;
-    font-weight: bold;
-}
-
-.footer {
-    text-align: center;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.5);
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
 /* ==========================================================================
-   3. ESTILOS DE TARJETAS (CARDS)
+   4. TARJETAS (CARDS & ION-CARD)
    ========================================================================== */
 .cards-grid {
     display: grid;
@@ -148,9 +183,34 @@ h1, h2, .font-cursive {
     flex-grow: 1;
 }
 
+.custom-card {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    --background: #ffffff;
+}
+
+.saludo-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    padding: 0.5rem 0;
+}
+
 /* ==========================================================================
-   4. ESTILOS DE BOTONES
+   5. BOTONES Y ACCIONES
    ========================================================================== */
+.actions-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
 .btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -176,16 +236,6 @@ h1, h2, .font-cursive {
     transform: translateY(-2px);
 }
 
-/* Contenedor de botones para el Index */
-.actions-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 3rem;
-}
-
-/* Botones estilo Wireframe con borde negro */
 .btn-outline {
     display: inline-flex;
     align-items: center;
@@ -214,158 +264,67 @@ h1, h2, .font-cursive {
     font-size: 1.6rem;
 }
 
-.custom-card {
-    max-width: 500px;
-    width: 100%;
-    margin: 0 auto;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    background: #ffffff;
-    --background: #ffffff;
-}
-
-.saludo-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--text-primary);
-    padding: 0.5rem 0;
-}
-/* 1. Declarar los Custom Elements como bloques */
-mi-header, 
-mi-footer {
-    display: block;
-    width: 100%;
-}
-
-/* 2. Convertir el body en contenedor flexible de pantalla completa */
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-}
-
-/* 3. Hacer que el contenido principal absorba todo el espacio vertical restante */
-main, 
-.main-content {
-    flex: 1;
-}
-
-/* 4. Asegurar que el footer no se encoja */
-footer, 
-mi-footer {
-    flex-shrink: 0;
-}
-/* VISTA HEXAGONAL*/
-img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-  object-position: center;
-
-}
-.gallery{
+/* ==========================================================================
+   6. GALERÍA HEXAGONAL RESPONSIVA
+   ========================================================================== */
+.gallery {
     width: 85%;
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit,75px);
-    grid-auto-rows: 150px ;
+    grid-template-columns: repeat(auto-fit, 75px);
+    grid-auto-rows: 150px;
     justify-content: center;
     gap: 1rem;
 }
 
-.gallery_item{
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%,50% 100%, 0% 75%, 0% 25% );
+.gallery_item {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     height: 150px;
     grid-column: span 2;
-    transition: 0.5s filter;
-    
+    transition: filter 0.3s ease;
 }
 
-.gallery_item:hover{
-    filter: brightness(0.3);
+.gallery_item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
+
+.gallery_item:hover {
+    filter: brightness(0.7);
+}
+
 .gallery_item:first-of-type{
+
+
 
     grid-column: 2 / span 2;
 
+
+
 }
+
 /*1 columna*/
+
 @media (max-width: 125px) {
+
  .gallery_item:first-of-type{
+
+
 
     grid-column: 1 / span 2;
 
+
+
 }  
+
  .gallery{
+
     grid-auto-rows: 150px ;
+
  }
-}
-/*2 col*/
-@media (max-width: 200px) {
- .gallery_item:nth-of-type(n+1){
 
-    grid-column: 2 / span 2;
-
-}  
-}
-/*3 col*/
-@media (max-width: 552px) {
- .gallery_item:nth-of-type(2n+1){
-
-    grid-column: 2 / span 2;
-
-}  
-}
-
-/*4 col*/
-@media (max-width: 670px) {
- .gallery_item:nth-of-type(4n+1){
-
-    grid-column: 2 / span 2;
-
-}  
-}
-
-/*4 col*/
-@media (max-width: 778px) {
- .gallery_item:nth-of-type(5n+1){
-
-    grid-column: 2 / span 2;
-
-}  
-}
-/*4 col*/
-@media (max-width: 900px) {
- .gallery_item:nth-of-type(6n+1){
-
-    grid-column: 2 / span 2;
-
-}  
-}
-/*4 col*/
-@media (max-width: 1000px) {
- .gallery_item:nth-of-type(7n+1){
-
-    grid-column: 2 / span 2;
-
-}  
-}
-
-@media (max-width: 1200px) {
- .gallery_item:nth-of-type(9n+1){
-
-    grid-column: 2 / span 2;
-
-}  
-}
-
-@media (max-width: 1900px) {
- .gallery_item:nth-of-type(10n+1){
-
-    grid-column: 2 / span 2;
-
-}  
 }
