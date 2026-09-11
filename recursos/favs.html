@@ -13,16 +13,15 @@
         
     </div>
 
+    
     <!-- Contenido inyectado dentro del template -->
     <template id="galeria-content">
-          
+        
+       
         <main class="gallery" id="gallery">
-  
+              
         </main>
-       <div class="row">
-
-        <div ><a href="index.html" class="btn-outline" aria-label="Inicio ">Volver a inicio</a></div>
-       </div> 
+      
          
         
        
@@ -49,7 +48,7 @@
     ];
 
     const galeria = document.getElementById("gallery");
-
+            
     // 2. Iteración para inyectar cada elemento en la galería
     imagenes.forEach((ruta, index) => {
         galeria.innerHTML += `
@@ -76,6 +75,7 @@
                 const doc = parser.parseFromString(htmlText, "text/html");
                 const baseTemplate = doc.getElementById("base-layout");
                 const layoutClone = baseTemplate.content.cloneNode(true);
+                
 
                 // Personalizar el título
                 layoutClone.getElementById("page-title").textContent = "💕tus favoritos 💕";
@@ -90,7 +90,6 @@
             }
         });
     </script>
-
-    
+      
 </body>
 </html>
